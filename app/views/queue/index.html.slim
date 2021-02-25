@@ -1,0 +1,14 @@
+= link_to '<button type="button" style="margin: 10px; border-color: green; background-color: green;">Send to PACS server</button>'.html_safe, \
+  queue_send_dcm_path, method: :get
+= link_to '<button type="button" style="margin: 10px; border-color: red; background-color: red;">Erase queue</button>'.html_safe, \
+  queue_erase_dir_path, method: :get
+a href='https://github.com/pavelazazel/dicom-sender' style='display: inline'
+  = image_tag 'github.png', size: 18, align: 'right', style: 'margin: 10px'
+
+p style='margin: 10px;' Status: #{@status} (#{@progress} sent)
+p style='margin: 10px;' #{@files.size} files
+
+table style='display: table; width: 100%'
+  - @files.each do |f|
+    tr
+      td = f
