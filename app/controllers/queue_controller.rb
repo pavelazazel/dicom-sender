@@ -22,10 +22,6 @@ class QueueController < ApplicationController
     redirect_to root_path
   end
 
-  def queue_params
-    params.require(:queue).permit(:data_uri)
-  end
-
   private
 
   def read_dcms(files)
