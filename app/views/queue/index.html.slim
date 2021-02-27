@@ -6,9 +6,9 @@ a href='https://github.com/pavelazazel/dicom-sender' style='display: inline'
   = image_tag 'github.png', size: 18, align: 'right', style: 'margin: 10px'
 
 p style='margin: 10px;' Status: #{@status} (#{@progress} sent)
-p style='margin: 10px;' #{@files.size} files
+p style='margin: 10px;' #{@quantity} files #{'(displayed first 50)' if @quantity > 50}
 
 table style='display: table; width: 100%'
-  - @files.each do |f|
+  - @dcms.each do |f|
     tr
       td = f

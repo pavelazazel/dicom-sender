@@ -4,7 +4,9 @@ class QueueController < ApplicationController
   include DICOM
 
   def index
-    @files = read_dcms(Dir.glob(ENV['FILES_PATH']))
+    files = Dir.glob(ENV['FILES_PATH'])
+    @quantity = files.size
+    @dcms = read_dcms(files.first(50))
     @status = SendingStatus.status
     @progress = SendingStatus.percent_progress
   end
@@ -15,7 +17,7 @@ class QueueController < ApplicationController
   end
 
   def erase_dir
-    FileUtils.rm_rf(Dir[ENV['FILES_PATH']])
+    FileUtils.rm_rf(Dir.glob(ENV['FILES_PATH']))
     SendingStatus.ready
     redirect_to root_path
   end
